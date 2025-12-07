@@ -137,6 +137,7 @@ header .logo span {
     cursor: pointer;
     color: var(--light);
     display: none;
+    max-width: 100%;
 }
 
 /* ------  home  ----------- */

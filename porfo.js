@@ -7,19 +7,29 @@ const btnhome = document.querySelector('.btn-home');
 const menu_b = document.querySelector('#menu_b');
 const nav = document.querySelector('.navigation');
 
-const burgerActive = () => {
-  menu_b.classList.toggle('bx-x');
-  menu_b.classList.toggle('active');
-  nav.classList.toggle('active');
 
-  if (menu_b.classList.contains('active')) {
-    nav.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  } else {
-    nav.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-};
+// Ouvrir / fermer avec le burger
+menu_b.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  menu_b.classList.toggle('bx-x');
+});
+
+// Fermer quand on clique sur un lien
+
+document.addEventListener('DOMContentLoaded', () => {
+  const menu_b = document.getElementById('menu');
+  const nav = document.querySelector('.nav');
+  const links = nav ? nav.querySelectorAll('a') : document.querySelectorAll('.nav a');
+
+  if (!menu_b || !nav) return console.warn('menu ou nav introuvable');
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      menu_b.classList.remove('bx-x');
+    });
+  });
+});
 
 const scollActive = () => {
   section.forEach(sec => {
@@ -57,7 +67,7 @@ menu_b.addEventListener('click', burgerActive);
 window.addEventListener('scroll', scollActive);
 
 const typed = new Typed('.multiple', {
-  strings: ["Développeur Web", "Designer", "Créateur"],
+  strings: ["Développeur Web", "Administrateur système", "Créateur"],
   typeSpeed: 100,
   backSpeed: 100,
   backDelay: 1000,
